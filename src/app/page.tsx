@@ -1,4 +1,4 @@
-import Hero from "@/components/hero";
+import { Hero } from "@/components/hero";
 import { Pricing } from "@/components/pricing";
 import ScrollAnimatedIcon from "@/components/scroll-animated-icon";
 
