@@ -6,6 +6,7 @@ import { MDXComponents } from '@/components/MDXComponents'
 import { PageIntro } from '@/components/PageIntro'
 import { PageLinks } from '@/components/PageLinks'
 import { loadMDXMetadata } from '@/lib/loadMDXMetadata'
+import Link from 'next/link'
 
 export default async function CaseStudyLayout({ children, _segments }) {
   let id = _segments.at(-2)
@@ -23,13 +24,14 @@ export default async function CaseStudyLayout({ children, _segments }) {
             <div className="flex flex-col gap-4">
               <p>{caseStudy.description}</p>
               {caseStudy.url && (
-                <a
+                <Link
                   href={caseStudy.url}
                   className="mx-auto w-fit rounded-full border border-primary px-4 py-2 text-sm hover:bg-primary hover:text-white"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Acesse
-                </a>
+                </Link>
               )}
             </div>
           </PageIntro>
