@@ -96,7 +96,7 @@ function CaseStudies({ caseStudies }) {
                   <span className="text-neutral-300" aria-hidden="true">
                     /
                   </span>
-                  <span>Case study</span>
+                  <span>Projeto</span>
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
                   {caseStudy.title}
@@ -187,7 +187,7 @@ export default async function Home() {
             Don&#39;t repeat yourself.
             <br />
           </h1>
-          <p className="text-xl text-neutral-600">
+          <p className="mt-6 text-xl text-neutral-600">
             Aqui, nós unimos criatividade e inovação para desenvolver soluções
             digitais que impulsionam seu negócio e conectam marcas ao mundo,
             sempre com eficiência e originalidade.

@@ -19,7 +19,7 @@ export function ContactSection() {
             </div>
             <div className="mt-10 border-t border-white/10 pt-10">
               <h3 className="font-display text-base font-semibold text-white">
-                Onde estamos
+                Prefere uma reunião presencial? Estamos em:
               </h3>
               <Offices
                 invert

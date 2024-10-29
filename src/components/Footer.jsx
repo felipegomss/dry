@@ -15,7 +15,7 @@ const navigation = [
       {
         title: (
           <>
-            See all <span aria-hidden="true">&rarr;</span>
+            Ver tudo <span aria-hidden="true">&rarr;</span>
           </>
         ),
         href: '/work',
