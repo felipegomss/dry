@@ -1,6 +1,6 @@
-import { useId } from 'react'
-import Image from 'next/image'
 import clsx from 'clsx'
+import Image from 'next/image'
+import { useId } from 'react'
 
 const shapes = [
   {
@@ -28,7 +28,7 @@ export function StylizedImage({ shape = 0, className, ...props }) {
     <div
       className={clsx(
         className,
-        'relative flex aspect-[719/680] w-full grayscale'
+        '- relative flex aspect-[719/680] w-full grayscale'
       )}
     >
       <svg viewBox={`0 0 ${width} ${height}`} fill="none" className="h-full">

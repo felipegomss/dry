@@ -14,11 +14,7 @@ export function Logomark({ invert = false, filled = false, ...props }) {
       <rect
         clipPath={`url(#${id}-clip)`}
         className={clsx(
-          'transition-all duration-300',
-          'fill-primary',
-          filled
-            ? 'h-full w-full'
-            : 'h-0 w-0 group-hover/logo:h-full group-hover/logo:w-full'
+          'h-full w-full fill-primary transition-all duration-300'
         )}
       />
       <use
