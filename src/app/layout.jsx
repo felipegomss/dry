@@ -5,7 +5,7 @@ import '@/styles/tailwind.css'
 export const metadata = {
   title: {
     template: '%s - Dry Digital',
-    default: 'Dry - Dont Repeat Yourself',
+    default: "Dry - Don't Repeat Yourself",
   },
 }
 
