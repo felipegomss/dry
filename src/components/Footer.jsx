@@ -11,7 +11,7 @@ const navigation = [
     links: [
       { title: 'FamilyFund', href: '/work/family-fund' },
       { title: 'Unseal', href: '/work/unseal' },
-      { title: 'Phobia', href: '/work/phobia' },
+      { title: 'Jacoseg', href: '/work/jacoseg' },
       {
         title: (
           <>

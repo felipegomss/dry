@@ -8,28 +8,11 @@ import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
-import logoBrightPath from '@/images/clients/bright-path/logo-light.svg'
-import logoFamilyFund from '@/images/clients/family-fund/logo-light.svg'
-import logoGreenLife from '@/images/clients/green-life/logo-light.svg'
-import logoHomeWork from '@/images/clients/home-work/logo-light.svg'
-import logoMailSmirk from '@/images/clients/mail-smirk/logo-light.svg'
-import logoNorthAdventures from '@/images/clients/north-adventures/logo-light.svg'
 import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
-import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
-import logoUnseal from '@/images/clients/unseal/logo-light.svg'
 import imageLaptop from '@/images/laptop.jpg'
 import { loadMDXMetadata } from '@/lib/loadMDXMetadata'
 
-const clients = [
-  ['Phobia', logoPhobiaLight],
-  ['Family Fund', logoFamilyFund],
-  ['Unseal', logoUnseal],
-  ['Mail Smirk', logoMailSmirk],
-  ['Home Work', logoHomeWork],
-  ['Green Life', logoGreenLife],
-  ['Bright Path', logoBrightPath],
-  ['North Adventures', logoNorthAdventures],
-]
+export const clients = []
 
 function Clients() {
   return (
@@ -37,7 +20,7 @@ function Clients() {
       <Container>
         <FadeIn className="flex items-center gap-x-8">
           <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
-            We’ve worked with hundreds of amazing people
+            Incríveis clientes que confiam em nós
           </h2>
           <div className="h-px flex-auto bg-neutral-800" />
         </FadeIn>
@@ -64,15 +47,16 @@ function CaseStudies({ caseStudies }) {
   return (
     <>
       <SectionIntro
-        title="Harnessing technology for a brighter future"
+        title="Tecnologia sob medida para o futuro do seu negócio"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          We believe technology is the answer to the world’s greatest
-          challenges. It’s also the cause, so we find ourselves in bit of a
-          catch 22 situation.
+          Usamos a tecnologia como uma aliada para transformar potencial em
+          resultados. Criamos soluções personalizadas que acompanham seu
+          crescimento e conectam sua marca ao mercado com eficiência e inovação.
         </p>
       </SectionIntro>
+
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {caseStudies.map((caseStudy) => (
@@ -81,12 +65,14 @@ function CaseStudies({ caseStudies }) {
                 <h3>
                   <Link href={caseStudy.href}>
                     <span className="absolute inset-0 rounded-3xl" />
-                    <Image
-                      src={caseStudy.logo}
-                      alt={caseStudy.client}
-                      className="h-16 w-16"
-                      unoptimized
-                    />
+                    <div className="h-16 w-16">
+                      <Image
+                        src={caseStudy.logo}
+                        alt={caseStudy.client}
+                        className="w-full grayscale"
+                        unoptimized
+                      />
+                    </div>
                   </Link>
                 </h3>
                 <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
@@ -146,17 +132,17 @@ function Services() {
             <ListItem title="Tráfego Pago">
               Gerenciamos suas campanhas de tráfego pago com estratégias
               eficientes, otimizando seu investimento e aumentando a
-              visibilidade da sua marca.
+              visibilidade da sua empresa e consolidando a sua marca.
             </ListItem>
             <ListItem title="Software Sob Medida">
               Desenvolvemos soluções personalizadas que atendem exatamente às
-              suas necessidades, garantindo que seu software funcione como um
-              diferencial competitivo.
+              suas necessidades, acompanhando seu crescimento e facilitando seus
+              processos.
             </ListItem>
             <ListItem title="Business Intelligence (BI)">
-              Transformamos dados em insights acionáveis, ajudando você a tomar
-              decisões estratégicas com base em informações precisas e
-              relevantes.
+              Transforme seus dados em vantagem competitiva com insights
+              precisos e prontos para ação. Nossas soluções de BI oferecem a
+              clareza necessária para decisões estratégicas e direcionadas.
             </ListItem>
           </List>
         </div>
@@ -188,9 +174,11 @@ export default async function Home() {
             <br />
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            Aqui, nós unimos criatividade e inovação para desenvolver soluções
-            digitais que impulsionam seu negócio e conectam marcas ao mundo,
-            sempre com eficiência e originalidade.
+            Somos parceiros na evolução digital do seu negócio. Com um olhar
+            afiado para inovação e eficiência, desenvolvemos soluções que
+            maximizam seu potencial e fortalecem a sua marca. Cada detalhe é
+            cuidadosamente pensado para transformar conexões em resultados
+            concretos.
           </p>
         </FadeIn>
       </Container>

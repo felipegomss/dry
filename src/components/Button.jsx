@@ -1,12 +1,21 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
-export function Button({ invert, href, className, children, ...props }) {
+export function Button({
+  invert,
+  secondary,
+  href,
+  className,
+  children,
+  ...props
+}) {
   className = clsx(
     className,
     'inline-flex rounded-full px-4 py-1.5 text-sm font-semibold transition',
     invert
-      ? 'bg-white text-neutral-950 hover:bg-primary hover:text-white'
+      ? 'hover:bg-white hover:text-neutral-950 bg-primary text-white'
+      : secondary
+      ? 'bg-white hover:bg-primary text-primary hover:text-white border border-primary'
       : 'bg-primary text-white hover:bg-neutral-800'
   )
 

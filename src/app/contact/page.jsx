@@ -1,5 +1,7 @@
+'use client'
+
 import Link from 'next/link'
-import { useId } from 'react'
+import { useId, useState } from 'react'
 
 import { Border } from '@/components/Border'
 import { Button } from '@/components/Button'
@@ -8,6 +10,8 @@ import { FadeIn } from '@/components/FadeIn'
 import { Offices } from '@/components/Offices'
 import { PageIntro } from '@/components/PageIntro'
 import { SocialMedia } from '@/components/SocialMedia'
+import { maskPhone } from '@/lib/mask'
+import clsx from 'clsx'
 
 function TextInput({ label, ...props }) {
   let id = useId()
@@ -19,7 +23,11 @@ function TextInput({ label, ...props }) {
         id={id}
         {...props}
         placeholder=" "
-        className="peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl"
+        className={clsx(
+          'peer block w-full border border-neutral-300 bg-transparent px-6 pb-4 pt-12 text-base/6 text-neutral-950 ring-4 ring-transparent transition focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5 group-first:rounded-t-2xl group-last:rounded-b-2xl',
+          props.erros && 'border-red-500'
+        )}
+        onFocus={(e) => props.setErros({ ...props.erros, [props.name]: false })}
       />
       <label
         htmlFor={id}
@@ -31,13 +39,15 @@ function TextInput({ label, ...props }) {
   )
 }
 
-function RadioInput({ label, ...props }) {
+function RadioInput({ label, value, checked, onChange }) {
   return (
     <label className="flex gap-x-3">
       <input
         type="radio"
-        {...props}
-        className="h-6 w-6 flex-none appearance-none rounded-full border border-neutral-950/20 outline-none checked:border-[0.5rem] checked:border-neutral-950 focus-visible:ring-1 focus-visible:ring-neutral-950 focus-visible:ring-offset-2"
+        value={value}
+        checked={checked}
+        onChange={onChange}
+        className="h-6 w-6 flex-none appearance-none rounded-full border border-neutral-950/20 outline-none checked:border-[0.5rem] checked:border-primary focus-visible:ring-1 focus-visible:ring-neutral-950 focus-visible:ring-offset-2"
       />
       <span className="text-base/6 text-neutral-950">{label}</span>
     </label>
@@ -45,53 +55,140 @@ function RadioInput({ label, ...props }) {
 }
 
 function ContactForm() {
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
+  const [company, setCompany] = useState('')
+  const [name, setName] = useState('')
+  const [type, setType] = useState('company')
+  const [erros, setErros] = useState({})
+  const [emailSet, setEmailSet] = useState(false)
+
+  const handleRadioChange = (e) => {
+    setType(e.target.value)
+    if (e.target.value === 'person') {
+      setCompany('')
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (
+      !email ||
+      !phone ||
+      !message ||
+      !name ||
+      (!company && type === 'company')
+    ) {
+      setErros({
+        email: !email,
+        phone: !phone,
+        message: !message,
+        name: !name,
+        company: type === 'company' && !company,
+      })
+      return
+    }
+    setEmailSet(true)
+  }
+
+  if (emailSet) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-neutral-300 px-6 py-8 lg:order-last">
+        <PageIntro eyebrow="Obrigado!" title="Agradecemos seu contato">
+          <p>
+            Recebemos sua mensagem e entraremos em contato em breve. Enquanto
+            isso, que tal dar uma olhada em nossos projetos?
+          </p>
+          <div className="mt-4 space-x-2">
+            <Button href="/work">Ver projetos</Button>
+
+            <Button onClick={() => setEmailSet(false)} secondary>
+              Enviar outro email
+            </Button>
+          </div>
+        </PageIntro>
+      </div>
+    )
+  }
+
   return (
     <FadeIn className="lg:order-last">
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2 className="font-display text-base font-semibold text-neutral-950">
           Vamos conversar sobre seu projeto
         </h2>
         <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
-          <TextInput label="Name" name="name" autoComplete="name" />
+          <div className="border border-neutral-300 px-6 py-8 first:rounded-t-2xl last:rounded-b-2xl">
+            <fieldset>
+              <legend className="text-base/6 text-neutral-500">
+                Você é uma
+              </legend>
+              <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
+                <RadioInput
+                  label="Empresa"
+                  name="type"
+                  value="company"
+                  checked={type === 'company'}
+                  onChange={handleRadioChange}
+                />
+                <RadioInput
+                  label="Pessoa física"
+                  name="type"
+                  value="person"
+                  checked={type === 'person'}
+                  onChange={handleRadioChange}
+                />
+              </div>
+            </fieldset>
+          </div>
+          {type === 'company' && (
+            <TextInput
+              label="Empresa"
+              name="company"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              erros={erros.company}
+              setErros={setErros}
+            />
+          )}
+          <TextInput
+            label="Nome"
+            name="name"
+            autoComplete="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            erros={erros.name}
+            setErros={setErros}
+          />
           <TextInput
             label="Email"
             type="email"
             name="email"
             autoComplete="email"
-          />
-          <TextInput
-            label="Empresa"
-            name="company"
-            autoComplete="organization"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            erros={erros.email}
+            setErros={setErros}
           />
           <TextInput
             label="Telefone"
             type="tel"
             name="phone"
             autoComplete="tel"
+            value={phone}
+            onChange={(e) => setPhone(maskPhone(e.target.value))}
+            erros={erros.phone}
+            setErros={setErros}
           />
-          <TextInput label="Mensagem" name="message" />
-          <div className="border border-neutral-300 px-6 py-8 first:rounded-t-2xl last:rounded-b-2xl">
-            <fieldset>
-              <legend className="text-base/6 text-neutral-500">
-                Orçamento
-              </legend>
-              <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
-                <RadioInput label="Até R$5 mil" name="budget" value="1" />
-                <RadioInput
-                  label="R$5 mil – R$10 mil"
-                  name="budget"
-                  value="5"
-                />
-                <RadioInput
-                  label="R$10 mil – R$15 mil"
-                  name="budget"
-                  value="10"
-                />
-                <RadioInput label="Mais de R$15 mil" name="budget" value="15" />
-              </div>
-            </fieldset>
-          </div>
+          <TextInput
+            label="Mensagem"
+            name="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            erros={erros.message}
+            setErros={setErros}
+          />
         </div>
         <Button type="submit" className="mt-10">
           Vamos trabalhar juntos!
@@ -147,12 +244,6 @@ function ContactDetails() {
       </Border>
     </FadeIn>
   )
-}
-
-export const metadata = {
-  title: 'Contate-nos',
-  description:
-    'Entre em contato conosco para agendar uma reunião ou tirar dúvidas sobre nossos serviços.',
 }
 
 export default function Contact() {

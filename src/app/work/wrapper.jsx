@@ -20,7 +20,18 @@ export default async function CaseStudyLayout({ children, _segments }) {
       <article className="mt-24 sm:mt-32 lg:mt-40">
         <header>
           <PageIntro eyebrow="Projeto" title={caseStudy.title} centered>
-            <p>{caseStudy.description}</p>
+            <div className="flex flex-col gap-4">
+              <p>{caseStudy.description}</p>
+              {caseStudy.url && (
+                <a
+                  href={caseStudy.url}
+                  className="mx-auto w-fit rounded-full border border-primary px-4 py-2 text-sm hover:bg-primary hover:text-white"
+                  target="_blank"
+                >
+                  Acesse
+                </a>
+              )}
+            </div>
           </PageIntro>
 
           <FadeIn>
@@ -33,12 +44,16 @@ export default async function CaseStudyLayout({ children, _segments }) {
                       <dd>{caseStudy.client}</dd>
                     </div>
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Ano</dt>
-                      <dd>
-                        <time dateTime={caseStudy.date.split('-')[0]}>
-                          {caseStudy.date.split('-')[0]}
-                        </time>
-                      </dd>
+                      {caseStudy.date && (
+                        <>
+                          <dt className="font-semibold">Ano</dt>
+                          <dd>
+                            <time dateTime={caseStudy.date.split('-')[0]}>
+                              {caseStudy.date.split('-')[0]}
+                            </time>
+                          </dd>
+                        </>
+                      )}
                     </div>
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
                       <dt className="font-semibold">Serviço</dt>
