@@ -177,15 +177,20 @@ export default async function Home() {
     <>
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
-          <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            Somos uma empresa brasileira com
-            <span className="text-primary"> DNA </span>
-            baiano.
+          <h1 className="inline-block bg-gradient-to-t from-neutral-50 to-primary bg-clip-text font-display text-3xl font-medium tracking-tight text-transparent [text-wrap:balance] sm:text-7xl">
+            Don&#39;t repeat yourself.
+            <br />
+            Don&#39;t repeat yourself.
+            <br />
+            Don&#39;t repeat yourself.
+            <br />
+            Don&#39;t repeat yourself.
+            <br />
           </h1>
-          <p className="mt-6 text-xl text-neutral-600">
-            Na Dry Digital Solutions, unimos criatividade e inovação para criar
-            soluções digitais que impulsionam o seu negócio e conectam marcas ao
-            mundo.
+          <p className="text-xl text-neutral-600">
+            Aqui, nós unimos criatividade e inovação para desenvolver soluções
+            digitais que impulsionam seu negócio e conectam marcas ao mundo,
+            sempre com eficiência e originalidade.
           </p>
         </FadeIn>
       </Container>
