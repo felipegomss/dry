@@ -98,11 +98,18 @@ function Clients() {
           role="list"
           className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4"
         >
-          {clients.map(([client, logo]) => (
+          {clients.map(([client, url]) => (
             <li key={client} className="group">
               <FadeIn className="overflow-hidden">
                 <Border className="pt-12 group-[&:nth-child(-n+2)]:-mt-px sm:group-[&:nth-child(3)]:-mt-px lg:group-[&:nth-child(4)]:-mt-px">
-                  <Image src={logo} alt={client} unoptimized />
+                  <Link
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-3xl font-bold hover:text-primary"
+                  >
+                    {client}
+                  </Link>
                 </Border>
               </FadeIn>
             </li>
