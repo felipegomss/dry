@@ -233,7 +233,7 @@ export default async function Home() {
         </FadeIn>
         <FadeIn className="grid gap-8 lg:mt-16 lg:grid-cols-3">
           {KPIS.map((kpi) => (
-            <KpiCard {...kpi} />
+            <KpiCard {...kpi} key={kpi.title} />
           ))}
         </FadeIn>
       </Container>
