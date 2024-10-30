@@ -223,7 +223,7 @@ export default async function Home() {
                 Com um olhar afiado para inovação e eficiência, desenvolvemos
                 soluções para maximizar seu potencial e fortalecer sua marca.
                 Transformamos o seu ecossistema digital em alta performance e
-                resultados concretos
+                resultados concretos.
               </p>
             </section>
           </div>
