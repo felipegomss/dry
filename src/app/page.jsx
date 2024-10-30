@@ -1,9 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
-
+import { Button } from '@/components/Button'
 import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
+import KpiCard from '@/components/KpiCard'
 import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
@@ -11,8 +10,15 @@ import { Testimonial } from '@/components/Testimonial'
 import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
 import imageLaptop from '@/images/laptop.jpg'
 import { loadMDXMetadata } from '@/lib/loadMDXMetadata'
+import Image from 'next/image'
+import Link from 'next/link'
+import hero from '/public/hero.png'
 
-export const clients = []
+export const clients = [
+  ['Santozane', 'https://santozane.com.br'],
+  ['Jacoseg', 'https://jacoseg.com.br'],
+  ['Bianca Vieira', 'https://bianca.psc.br'],
+]
 
 function Clients() {
   return (
@@ -29,10 +35,17 @@ function Clients() {
             role="list"
             className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4"
           >
-            {clients.map(([client, logo]) => (
+            {clients.map(([client, url]) => (
               <li key={client}>
                 <FadeIn>
-                  <Image src={logo} alt={client} unoptimized />
+                  <Link
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-3xl font-bold text-white hover:text-primary"
+                  >
+                    {client}
+                  </Link>
                 </FadeIn>
               </li>
             ))}
@@ -156,30 +169,72 @@ export const metadata = {
     'We are developer studio working at the intersection of design and technology.',
 }
 
+const KPIS = [
+  {
+    prefix: 'cerca de',
+    title: '75% dos usuários',
+    text: 'não passam da primeira página de resultados de busca',
+  },
+  {
+    prefix: 'multiplicado em até',
+    title: '5x mais alcance',
+    text: 'com uma presença digital otimizada, atraindo um público maior',
+  },
+  {
+    prefix: 'mais de',
+    title: '55% de confiança',
+    text: 'percebida por consumidores em marcas com forte presença online',
+  },
+]
+
 export default async function Home() {
   let caseStudies = (await loadMDXMetadata('work')).slice(0, 3)
 
   return (
     <>
       <Container className="mt-24 sm:mt-32 md:mt-56">
-        <FadeIn className="max-w-3xl">
-          <h1 className="inline-block bg-gradient-to-t from-neutral-50 to-primary bg-clip-text font-display text-3xl font-medium tracking-tight text-transparent [text-wrap:balance] sm:text-7xl">
-            Don&#39;t repeat yourself.
-            <br />
-            Don&#39;t repeat yourself.
-            <br />
-            Don&#39;t repeat yourself.
-            <br />
-            Don&#39;t repeat yourself.
-            <br />
-          </h1>
-          <p className="mt-6 text-xl text-neutral-600">
-            Somos parceiros na evolução digital do seu negócio. Com um olhar
-            afiado para inovação e eficiência, desenvolvemos soluções que
-            maximizam seu potencial e fortalecem a sua marca. Cada detalhe é
-            cuidadosamente pensado para transformar conexões em resultados
-            concretos.
-          </p>
+        <FadeIn className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="space-y-6">
+            <h1 className="inline-block font-display text-3xl font-medium [text-wrap:balance] sm:text-7xl">
+              Don&#39;t repeat yourself.
+            </h1>
+            <p className="text-xl text-neutral-600">
+              O melhor parceiro na evolução digital do seu negócio.
+            </p>
+
+            <section className="space-y-2">
+              <div className="flex flex-col gap-4 lg:flex-row">
+                <div>
+                  <h2 className="text-2xl font-semibold uppercase tracking-tight ">
+                    aumento de até 70%
+                  </h2>
+                  <p className="font-semibold">
+                    nas conversões com presença digital
+                  </p>
+                </div>
+                <Button
+                  href="/contact"
+                  className="flex flex-1 items-center justify-center text-xl"
+                >
+                  Transforme seu potencial
+                </Button>
+              </div>
+              <p className="py-2 text-foreground ">
+                Com um olhar afiado para inovação e eficiência, desenvolvemos
+                soluções para maximizar seu potencial e fortalecer sua marca.
+                Transformamos o seu ecossistema digital em alta performance e
+                resultados concretos
+              </p>
+            </section>
+          </div>
+          <div className={'h-full w-full '}>
+            <Image src={hero} alt="Laptop" className="w-full" />
+          </div>
+        </FadeIn>
+        <FadeIn className="grid gap-8 lg:mt-16 lg:grid-cols-3">
+          {KPIS.map((kpi) => (
+            <KpiCard {...kpi} />
+          ))}
         </FadeIn>
       </Container>
 

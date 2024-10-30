@@ -63,6 +63,9 @@ module.exports = {
       borderRadius: {
         '4xl': '2.5rem',
       },
+      backgroundImage: {
+        hero: "url('/hero.png')",
+      },
       fontFamily: {
         sans: ['Mona Sans', ...defaultTheme.fontFamily.sans],
         display: [
