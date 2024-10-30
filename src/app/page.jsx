@@ -8,11 +8,11 @@ import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
 import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
+import hero from '@/images/hero.png'
 import imageLaptop from '@/images/laptop.jpg'
 import { loadMDXMetadata } from '@/lib/loadMDXMetadata'
 import Image from 'next/image'
 import Link from 'next/link'
-import hero from '/public/hero.png'
 
 export const clients = [
   ['Santozane', 'https://santozane.com.br'],
