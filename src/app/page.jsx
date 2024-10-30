@@ -203,7 +203,7 @@ export default async function Home() {
             </p>
 
             <section className="space-y-2">
-              <div className="flex flex-col gap-4 lg:flex-row">
+              <div className="flex flex-wrap gap-4">
                 <div>
                   <h2 className="text-2xl font-semibold uppercase tracking-tight ">
                     aumento de até 70%
@@ -214,7 +214,7 @@ export default async function Home() {
                 </div>
                 <Button
                   href="/contact"
-                  className="flex flex-1 items-center justify-center text-xl"
+                  className="flex flex-1 items-center justify-center whitespace-nowrap text-xl"
                 >
                   Transforme seu potencial
                 </Button>

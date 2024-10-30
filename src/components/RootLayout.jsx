@@ -1,5 +1,13 @@
 'use client'
 
+import { Button } from '@/components/Button'
+import { Container } from '@/components/Container'
+import { Footer } from '@/components/Footer'
+import { GridPattern } from '@/components/GridPattern'
+import { Logo, Logomark } from '@/components/Logo'
+import { Offices } from '@/components/Offices'
+import { SocialMedia } from '@/components/SocialMedia'
+import { useFirstRender } from '@/hooks/first-render'
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
@@ -12,14 +20,6 @@ import {
   useRef,
   useState,
 } from 'react'
-
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Footer } from '@/components/Footer'
-import { GridPattern } from '@/components/GridPattern'
-import { Logo, Logomark } from '@/components/Logo'
-import { Offices } from '@/components/Offices'
-import { SocialMedia } from '@/components/SocialMedia'
 
 const RootLayoutContext = createContext({})
 
@@ -139,16 +139,30 @@ function Navigation() {
 }
 
 function RootLayoutInner({ children }) {
-  let panelId = useId()
-  let [expanded, setExpanded] = useState(false)
-  let openRef = useRef()
-  let closeRef = useRef()
-  let navRef = useRef()
-  let shouldReduceMotion = useReducedMotion()
+  const { isFR, setIsFR } = useFirstRender()
+
+  const [expanded, setExpanded] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
+  const panelId = useId()
+  const openRef = useRef()
+  const closeRef = useRef()
+  const navRef = useRef()
+  const headerRef = useRef()
 
   useEffect(() => {
+    if (isFR) {
+      setExpanded(true)
+      setIsFR(false)
+    }
+    const timer = setTimeout(() => {
+      setExpanded(false)
+    }, 500)
+
     function onClick(event) {
-      if (event.target.closest('a')?.href === window.location.href) {
+      if (
+        (headerRef.current && !headerRef.current.contains(event.target)) ||
+        event.target.closest('a')?.href === window.location.href
+      ) {
         setExpanded(false)
       }
     }
@@ -157,12 +171,13 @@ function RootLayoutInner({ children }) {
 
     return () => {
       window.removeEventListener('click', onClick)
+      clearTimeout(timer)
     }
   }, [])
 
   return (
     <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
-      <header>
+      <header ref={headerRef}>
         <div
           className="absolute left-0 right-0 top-2 z-40 pt-14"
           aria-hidden={expanded ? 'true' : undefined}

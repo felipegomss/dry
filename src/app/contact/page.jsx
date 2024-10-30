@@ -116,7 +116,7 @@ function ContactForm() {
     <FadeIn className="lg:order-last">
       <form onSubmit={handleSubmit}>
         <h2 className="font-display text-base font-semibold text-neutral-950">
-          Vamos conversar sobre seu projeto
+          Vamos conversar sobre seu projeto!
         </h2>
         <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
           <div className="border border-neutral-300 px-6 py-8 first:rounded-t-2xl last:rounded-b-2xl">
@@ -191,7 +191,7 @@ function ContactForm() {
           />
         </div>
         <Button type="submit" className="mt-10">
-          Vamos trabalhar juntos!
+          Vamos crescer juntos!
         </Button>
       </form>
     </FadeIn>
@@ -205,9 +205,9 @@ function ContactDetails() {
         Nossas localidades
       </h2>
       <p className="mt-6 text-base text-neutral-600">
-        Preferimos a praticidade do online, mas estamos disponíveis para
-        reuniões presenciais nas cidades onde atuamos. Entre em contato para
-        agendar um encontro!
+        Valorizamos a praticidade do online, mas também estamos disponíveis para
+        reuniões presenciais nas cidades onde atuamos. Fale conosco para agendar
+        um encontro!
       </p>
 
       <Offices className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2" />
@@ -249,7 +249,7 @@ function ContactDetails() {
 export default function Contact() {
   return (
     <>
-      <PageIntro eyebrow="Contate-nos" title="Vamos trabalhar juntos!">
+      <PageIntro eyebrow="Contate-nos" title="Vamos crescer juntos!">
         <p>Mal podemos esperar para ouvir sobre o seu projeto.</p>
       </PageIntro>
 
